@@ -1,7 +1,14 @@
+import * as Styled from './styles';
+
 function Home() {
   return (
     <div>
-      <h1>Hello World</h1>
+      <Styled.Wrapper background="blue">
+        <h1>Hello World</h1>
+      </Styled.Wrapper>
+      <Styled.Wrapper background="tomato">
+        <h1>Hello World</h1>
+      </Styled.Wrapper>
     </div>
   );
 }
