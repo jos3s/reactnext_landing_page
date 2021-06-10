@@ -4,4 +4,5 @@ export const Wrapper = styled.div`
   ${(props) => css`
     background: ${props.background};
   `}
+  color:${(props) => props.color || 'black'}
 `;

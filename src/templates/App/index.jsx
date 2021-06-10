@@ -6,7 +6,7 @@ function Home() {
       <Styled.Wrapper background="blue">
         <h1>Hello World</h1>
       </Styled.Wrapper>
-      <Styled.Wrapper background="tomato">
+      <Styled.Wrapper background="tomato" color="white">
         <h1>Hello World</h1>
       </Styled.Wrapper>
     </div>
