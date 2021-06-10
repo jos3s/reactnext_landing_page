@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders learn react link 1`] = `
+.c0 {
+  background: tomato;
+  color: white;
+}
+
+<div
+  class="c0"
+  color="white"
+>
+  <h1>
+    Hello World
+  </h1>
+</div>
+`;
