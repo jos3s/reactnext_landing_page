@@ -18,9 +18,7 @@ export const theme = {
       xlarge: '4.0rem',
       xxlarge: '4.8rem',
       huge: '5.6rem',
-    },
-    media: {
-      lteMedium: '(max-width: 768px)',
+      xhuge: '6.4rem',
     },
     spacings: {
       xsmall: '8rem',
@@ -32,5 +30,8 @@ export const theme = {
       huge: '5.6rem',
       xhuge: '6.4rem',
     },
+  },
+  media: {
+    lteMedium: '(max-width: 768px)',
   },
 };
