@@ -16,7 +16,7 @@ describe('<MenuLink />', () => {
     expect(screen.getByRole('link', { name: 'Children' })).toHaveAttribute('target', '_blank');
   });
   it('should render open in new tab', () => {
-    renderTheme(<MenuLink link="https://localhost">Children</MenuLink>);
-    expect(screen.getByRole('link', { name: 'Children' })).toMatchInlineSnapshot();
+    const { container } = renderTheme(<MenuLink link="https://localhost">Children</MenuLink>);
+    expect(container.firstChild).toMatchInlineSnapshot();
   });
 });
