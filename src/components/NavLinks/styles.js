@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  background: #fff;
+export const Container = styled.nav`
   display: flex;
   flex-flow: row wrap;
 
