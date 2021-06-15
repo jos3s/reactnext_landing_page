@@ -23,7 +23,8 @@ const mediaFont = (theme) => css`
 `;
 
 export const Title = styled.h1`
-  color: ${({ theme, colorDark }) => (colorDark ? theme.colors.primaryColor : theme.colors.white)};
+  color: ${({ theme, colorDark }) =>
+    colorDark ? theme.colors.primaryColor : theme.colors.white};
   ${({ theme, size }) => css`
     ${titleSize[size](theme)}
   `}
