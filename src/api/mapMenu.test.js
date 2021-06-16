@@ -1,4 +1,4 @@
-import { mapMenu, mapMenuLinks } from './mapaMenu';
+import { mapMenu, mapMenuLinks } from './mapMenu';
 
 describe('map menu', () => {
   it('should return a predefined object if no data', () => {
