@@ -18,8 +18,7 @@ export const Base = ({ links = [], logoData, footerHtml, children }) => {
 };
 
 Base.propTypes = {
-  links: P.arrayOf([]),
-  logoData: P.shape({}),
+  ...Menu.propTypes,
   footerHtml: P.string.isRequired,
   children: P.node.isRequired,
 };
