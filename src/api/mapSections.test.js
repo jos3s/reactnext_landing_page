@@ -1,4 +1,8 @@
-import { mapSections, mapSectionTwoColumn } from './mapSections';
+import {
+  mapSectionContent,
+  mapSections,
+  mapSectionTwoColumn,
+} from './mapSections';
 
 describe('mapSections', () => {
   it('should render predefined sections if no data', () => {
@@ -65,5 +69,40 @@ describe('mapSections', () => {
     expect(data.srcImg).toBe('2ac7d6a0f8.svg');
     expect(data.text).toBe('To wrap up January');
     expect(data.title).toBe('January brings us Firefox 85');
+  });
+
+  it('should map section content with no data', () => {
+    const data = mapSectionContent();
+
+    expect(data.backgroundDark).toBe(false);
+    expect(data.component).toBe('');
+    expect(data.sectionId).toBe('');
+    expect(data.html).toBe('');
+    expect(data.title).toBe('');
+  });
+
+  it('should map section content with data', () => {
+    const data = mapSectionContent({
+      __component: 'section.section-content',
+      _id: '60c13d913c48bd3f64fc0e5b',
+      title: 'news coverage and some surprises',
+      content: '<p>teste</p>',
+      metadata: {
+        background: false,
+        _id: '60c13d923c48bd3f64fc0e65',
+        name: 'Intro',
+        section_id: 'intro',
+        __v: 0,
+        id: '60c13d923c48bd3f64fc0e65',
+      },
+      __v: 1,
+      id: '60c13d913c48bd3f64fc0e5b',
+    });
+
+    expect(data.backgroundDark).toBe(false);
+    expect(data.component).toBe('section.section-content');
+    expect(data.sectionId).toBe('');
+    expect(data.html).toBe('<p>teste</p>');
+    expect(data.title).toBe('news coverage and some surprises');
   });
 });
