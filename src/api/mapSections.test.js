@@ -1,4 +1,5 @@
 import {
+  mapImageGrid,
   mapSectionContent,
   mapSections,
   mapSectionTwoColumn,
@@ -25,43 +26,20 @@ describe('mapSections', () => {
   it('should map section two column', () => {
     const data = mapSectionTwoColumn({
       __component: 'section.section-two-columns',
-      _id: '60c13d913c48bd3f64fc0e5a',
       description: 'To wrap up January',
       title: 'January brings us Firefox 85',
       metadata: {
         background: true,
-        _id: '60c13d923c48bd3f64fc0e61',
         name: 'Home',
         section_id: 'home',
-        __v: 0,
-        id: '60c13d923c48bd3f64fc0e61',
       },
-      __v: 1,
       image: {
-        _id: '60c1029a3c48bd3f64fc0e57',
         name: 'javascript.svg',
         alternativeText:
           'Desenho de pessoas segurando os logos do HTML, CSS E JS',
         caption: 'Desenho de pessoas segurando os logos do HTML, CSS E JS',
-        hash: 'javascript_2ac7d6a0f8',
-        ext: '.svg',
-        mime: 'image/svg+xml',
-        size: 30.31,
         url: '2ac7d6a0f8.svg',
-        provider_metadata: {
-          public_id: 'javascript_2ac7d6a0f8',
-          resource_type: 'image',
-        },
-        provider: 'cloudinary',
-        width: 1030,
-        height: 730,
-        related: ['60c13d913c48bd3f64fc0e5a', '60c13d913c48bd3f64fc0e60'],
-        createdAt: '2021-06-09T18:04:10.082Z',
-        updatedAt: '2021-06-09T22:15:47.752Z',
-        __v: 0,
-        id: '60c1029a3c48bd3f64fc0e57',
       },
-      id: '60c13d913c48bd3f64fc0e5a',
     });
 
     expect(data.backgroundDark).toBe(true);
@@ -85,19 +63,13 @@ describe('mapSections', () => {
   it('should map section content with data', () => {
     const data = mapSectionContent({
       __component: 'section.section-content',
-      _id: '60c13d913c48bd3f64fc0e5b',
       title: 'news coverage and some surprises',
       content: '<p>teste</p>',
       metadata: {
         background: false,
-        _id: '60c13d923c48bd3f64fc0e65',
         name: 'Intro',
         section_id: 'intro',
-        __v: 0,
-        id: '60c13d923c48bd3f64fc0e65',
       },
-      __v: 1,
-      id: '60c13d913c48bd3f64fc0e5b',
     });
 
     expect(data.backgroundDark).toBe(false);
@@ -110,49 +82,23 @@ describe('mapSections', () => {
   it('should map grid text with data', () => {
     const data = mapTextGrid({
       __component: 'section.section-grid',
-      _id: '60c13d913c48bd3f64fc0e5c',
       title: 'My grid',
       description: 'aaa',
       text_grid: [
         {
-          _id: '60c13d923c48bd3f64fc0e62',
           title: 'Teste 1',
           description: 'abc',
-          __v: 0,
-          id: '60c13d923c48bd3f64fc0e62',
-        },
-        {
-          _id: '60c13d923c48bd3f64fc0e63',
-          description:
-            'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis cum delectus molestias. Atque doloribus nobis laudantium esse ut, non commodi maxime distinctio veritatis unde, reprehenderit minus ad dolores provident maiores.',
-          title: 'Teste 3',
-          __v: 0,
-          id: '60c13d923c48bd3f64fc0e63',
-        },
-        {
-          _id: '60c13d923c48bd3f64fc0e64',
-          description:
-            'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis cum delectus molestias. Atque doloribus nobis laudantium esse ut, non commodi maxime distinctio veritatis unde, reprehenderit minus ad dolores provident maiores.',
-          title: 'Teste 3',
-          __v: 0,
-          id: '60c13d923c48bd3f64fc0e64',
         },
       ],
-      image_grid: [],
       metadata: {
         background: true,
-        _id: '60c13d933c48bd3f64fc0e81',
         section_id: 'grid-one',
         name: 'Grid one',
-        __v: 0,
-        id: '60c13d933c48bd3f64fc0e81',
       },
-      __v: 2,
-      id: '60c13d913c48bd3f64fc0e5c',
     });
 
     expect(data.backgroundDark).toBe(true);
-    expect(data.component).toBe('section.section-grid');
+    expect(data.component).toBe('section.section-grid-text');
     expect(data.sectionId).toBe('grid-one');
     expect(data.title).toBe('My grid');
     expect(data.description).toBe('aaa');
@@ -164,11 +110,52 @@ describe('mapSections', () => {
     const data = mapTextGrid(undefined);
 
     expect(data.backgroundDark).toBe(false);
-    expect(data.component).toBe('');
+    expect(data.component).toBe('section.section-grid-text');
     expect(data.sectionId).toBe('');
     expect(data.title).toBe('');
     expect(data.description).toBe('');
-    /*expect(data.grid[0].title).toBe('Teste 1');
-    expect(data.grid[0].description).toBe('abc'); */
+  });
+
+  it('should map grid image with data', () => {
+    const data = mapImageGrid({
+      __component: 'section.section-grid',
+      _id: '60c13d913c48bd3f64fc0e5d',
+      title: 'Gallery',
+      description: 'Uma breve descrição.',
+      text_grid: [],
+      image_grid: [
+        {
+          image: {
+            alternativeText: 'Uma arvore com prédios ao redor',
+            url: 'https://res.cloudinary.com/jos3s/image/upload/v1623262243/360x360_r_2_76bb1a347f.jpg',
+          },
+        },
+      ],
+      metadata: {
+        background: false,
+        name: 'Gallery',
+        section_id: 'gallery',
+      },
+    });
+
+    expect(data.backgroundDark).toBe(false);
+    expect(data.component).toBe('section.section-grid-image');
+    expect(data.sectionId).toBe('gallery');
+    expect(data.title).toBe('Gallery');
+    expect(data.description).toBe('Uma breve descrição.');
+    expect(data.grid[0].altText).toBe('Uma arvore com prédios ao redor');
+    expect(data.grid[0].srcImg).toBe(
+      'https://res.cloudinary.com/jos3s/image/upload/v1623262243/360x360_r_2_76bb1a347f.jpg',
+    );
+  });
+
+  it('should map grid image without data', () => {
+    const data = mapImageGrid(undefined);
+
+    expect(data.backgroundDark).toBe(false);
+    expect(data.component).toBe('section.section-grid-image');
+    expect(data.sectionId).toBe('');
+    expect(data.title).toBe('');
+    expect(data.description).toBe('');
   });
 });
