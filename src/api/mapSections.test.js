@@ -2,6 +2,7 @@ import {
   mapSectionContent,
   mapSections,
   mapSectionTwoColumn,
+  mapTextGrid,
 } from './mapSections';
 
 describe('mapSections', () => {
@@ -101,8 +102,73 @@ describe('mapSections', () => {
 
     expect(data.backgroundDark).toBe(false);
     expect(data.component).toBe('section.section-content');
-    expect(data.sectionId).toBe('');
+    expect(data.sectionId).toBe('intro');
     expect(data.html).toBe('<p>teste</p>');
     expect(data.title).toBe('news coverage and some surprises');
+  });
+
+  it('should map grid text with data', () => {
+    const data = mapTextGrid({
+      __component: 'section.section-grid',
+      _id: '60c13d913c48bd3f64fc0e5c',
+      title: 'My grid',
+      description: 'aaa',
+      text_grid: [
+        {
+          _id: '60c13d923c48bd3f64fc0e62',
+          title: 'Teste 1',
+          description: 'abc',
+          __v: 0,
+          id: '60c13d923c48bd3f64fc0e62',
+        },
+        {
+          _id: '60c13d923c48bd3f64fc0e63',
+          description:
+            'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis cum delectus molestias. Atque doloribus nobis laudantium esse ut, non commodi maxime distinctio veritatis unde, reprehenderit minus ad dolores provident maiores.',
+          title: 'Teste 3',
+          __v: 0,
+          id: '60c13d923c48bd3f64fc0e63',
+        },
+        {
+          _id: '60c13d923c48bd3f64fc0e64',
+          description:
+            'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis cum delectus molestias. Atque doloribus nobis laudantium esse ut, non commodi maxime distinctio veritatis unde, reprehenderit minus ad dolores provident maiores.',
+          title: 'Teste 3',
+          __v: 0,
+          id: '60c13d923c48bd3f64fc0e64',
+        },
+      ],
+      image_grid: [],
+      metadata: {
+        background: true,
+        _id: '60c13d933c48bd3f64fc0e81',
+        section_id: 'grid-one',
+        name: 'Grid one',
+        __v: 0,
+        id: '60c13d933c48bd3f64fc0e81',
+      },
+      __v: 2,
+      id: '60c13d913c48bd3f64fc0e5c',
+    });
+
+    expect(data.backgroundDark).toBe(true);
+    expect(data.component).toBe('section.section-grid');
+    expect(data.sectionId).toBe('grid-one');
+    expect(data.title).toBe('My grid');
+    expect(data.description).toBe('aaa');
+    expect(data.grid[0].title).toBe('Teste 1');
+    expect(data.grid[0].description).toBe('abc');
+  });
+
+  it('should map grid text with no data', () => {
+    const data = mapTextGrid(undefined);
+
+    expect(data.backgroundDark).toBe(false);
+    expect(data.component).toBe('');
+    expect(data.sectionId).toBe('');
+    expect(data.title).toBe('');
+    expect(data.description).toBe('');
+    /*expect(data.grid[0].title).toBe('Teste 1');
+    expect(data.grid[0].description).toBe('abc'); */
   });
 });
