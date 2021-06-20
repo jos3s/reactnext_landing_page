@@ -35,9 +35,11 @@ export const GridText = ({
 GridText.propTypes = {
   title: P.string.isRequired,
   description: P.node.isRequired,
-  grid: P.arrayOf({
-    title: P.string.isRequired,
-    description: P.node.isRequired,
-  }).isRequired,
+  grid: P.arrayOf(
+    P.shape({
+      title: P.string.isRequired,
+      description: P.string.isRequired,
+    }),
+  ).isRequired,
   backgroundDark: P.bool,
 };
