@@ -32,9 +32,11 @@ export const GridImage = ({
 GridImage.propTypes = {
   title: P.string.isRequired,
   description: P.string.isRequired,
-  grid: P.arrayOf({
-    altText: P.string.isRequired,
-    srcImg: P.string.isRequired,
-  }).isRequired,
+  grid: P.arrayOf(
+    P.shape({
+      altText: P.string.isRequired,
+      srcImg: P.string.isRequired,
+    }),
+  ).isRequired,
   backgroundDark: P.bool,
 };
