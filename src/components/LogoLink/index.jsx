@@ -6,8 +6,10 @@ import { Heading } from '../Heading';
 export const LogoLink = ({ text, srcImg = '', link }) => {
   return (
     <Heading size="small" uppercase>
+      {console.log(text, srcImg, link)}
       <Styled.Container href={link}>
-        {srcImg ? <img src={srcImg} alt={text} /> : text}
+        {!!srcImg && <img src={srcImg} alt={text} />}
+        {!srcImg && text}
       </Styled.Container>
     </Heading>
   );
