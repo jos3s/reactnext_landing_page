@@ -1,5 +1,5 @@
 export default {
-  url: 'http://localhost:1337/pages/?slug=',
+  url: 'https://reactnext-strapi-landing-page.herokuapp.com/pages/?slug=',
   siteName: 'React Landing Page',
   defaultSlug: 'landing-page',
 };
