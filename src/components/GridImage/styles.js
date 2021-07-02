@@ -11,6 +11,10 @@ export const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: ${({ theme }) => theme.spacings.large};
+
+  @media ${({ theme }) => theme.media.lteMedium} {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const GridElement = styled.div`
