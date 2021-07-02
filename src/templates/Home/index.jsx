@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 import mockBase from '../Base/mock';
 import { mapData } from '../../api/mapData';
+import config from '../../config/index';
 
 import { Base } from '../Base';
 import { PageNotFound } from '../PageNotFound';
@@ -19,11 +20,11 @@ function Home() {
 
   useEffect(() => {
     const path = location.pathname.replace(/[^a-z0-9-_]/gi, '');
-    const slug = path ? path : 'landing-page';
+    const slug = path ? path : config.defaultSlug;
 
     const load = async () => {
       try {
-        const data = await fetch('http://localhost:1337/pages/?slug=' + slug);
+        const data = await fetch(config.url + slug);
         const json = await data.json();
         const pagesData = mapData(json);
         setData(pagesData[0]);
@@ -34,6 +35,13 @@ function Home() {
     };
     load();
   }, [location]);
+
+  useEffect(() => {
+    if (data === undefined) document.title = `404 | ${config.title}`;
+    if (data && !data.slug) document.title = `Carregando - ${config.siteName}`;
+    if (data && data.title)
+      document.title = ` ${data.title} | ${config.siteName}`;
+  }, [data]);
 
   if (data === undefined) return <PageNotFound />;
 
