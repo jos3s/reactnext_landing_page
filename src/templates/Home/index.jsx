@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import mockBase from '../Base/mock';
 import { mapData } from '../../api/mapData';
@@ -14,12 +15,15 @@ import { GridImage } from '../../components/GridImage';
 function Home() {
   const [data, setData] = useState([]);
 
+  const location = useLocation();
+
   useEffect(() => {
+    const path = location.pathname.replace(/[^a-z0-9-_]/gi, '');
+    const slug = path ? path : 'landing-page';
+
     const load = async () => {
       try {
-        const data = await fetch(
-          'http://localhost:1337/pages/?slug=landing-page',
-        );
+        const data = await fetch('http://localhost:1337/pages/?slug=' + slug);
         const json = await data.json();
         const pagesData = mapData(json);
         setData(pagesData[0]);
@@ -29,7 +33,7 @@ function Home() {
       }
     };
     load();
-  }, []);
+  }, [location]);
 
   if (data === undefined) return <PageNotFound />;
 
